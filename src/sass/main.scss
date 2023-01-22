@@ -1,0 +1,9 @@
+@use "./base/reset";
+@use "./util/variables";
+
+// Globals
+
+.width {
+  width: min(100% - 3rem, 737px);
+  margin-inline: auto;
+}
