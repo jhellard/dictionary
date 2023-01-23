@@ -78,6 +78,7 @@ hr {
   &__input {
     padding-left: 1.5rem;
     min-height: 48px;
+    width: 100%;
     border: none;
     background-color: transparent;
     font-weight: bold;
@@ -110,6 +111,23 @@ hr {
     font-size: v.$body-m-font;
     line-height: v.$body-m-line;
     margin-bottom: 2rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+
+      &:disabled {
+        img {
+          filter: grayscale(100%);
+        }
+      }
+    }
   }
 
   &__container {
@@ -181,5 +199,30 @@ hr {
       margin-left: 0.5rem;
       display: inline-block;
     }
+  }
+}
+
+// ERROR
+
+.error {
+  text-align: center;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    color: v.$darkGray;
+  }
+
+  pre {
+    white-space: pre-wrap; /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
   }
 }

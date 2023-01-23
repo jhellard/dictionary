@@ -1,15 +1,30 @@
 import React from "react";
 
 import NewWindow from "../assets/images/icon-new-window.svg";
+import Play from "../assets/images/icon-play.svg";
 
 const Word = ({ data }) => {
+  let pronunciation;
+  let buttonDisabled = false;
+  data.phonetics.map((phonetic) => {
+    phonetic.audio
+      ? ((pronunciation = new Audio(phonetic.audio)), (buttonDisabled = false))
+      : (buttonDisabled = true);
+  });
+
   console.log(data);
   return (
     <section className="word">
-      <div>
-        <h1 className="word__word">{data.word}</h1>
-        <span className="word__phonetic">{data.phonetic}</span>
+      <div className="word__wrapper">
+        <div>
+          <h1 className="word__word">{data.word}</h1>
+          <span className="word__phonetic">{data.phonetic}</span>
+        </div>
+        <button disabled={buttonDisabled} onClick={() => pronunciation.play()}>
+          <img src={Play} alt="Play button" />
+        </button>
       </div>
+
       {data.meanings.map((meaning, key) => {
         return (
           <section key={key}>

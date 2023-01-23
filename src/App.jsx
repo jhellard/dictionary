@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import Word from "./components/Word";
 import Loading from "./components/Loading";
+import ErrorPage from "./components/ErrorPage";
 
 import Logo from "./assets/images/logo.svg";
 import Search from "./assets/images/icon-search.svg";
@@ -32,7 +33,6 @@ const App = () => {
   };
 
   if (isLoading) return <Loading />;
-  if (isError) return <pre>{JSON.stringify(error)}</pre>;
 
   return (
     <main className="width main">
@@ -41,15 +41,17 @@ const App = () => {
       </header>
       <form onSubmit={(e) => handleInput(e)} className="search">
         <input
+          required
           className="search__input"
           type="text"
           ref={userWord}
-          defaultValue="keyboard"
+          placeholder="Search for any word..."
         />
         <button className="search__button">
           <img src={Search} alt="Search Button" />
         </button>
       </form>
+      {isError && <ErrorPage error={error.response.data} />}
       {isSuccess && <Word data={data[0]} />}
     </main>
   );
