@@ -21,8 +21,16 @@ hr {
 }
 
 // TODO: Font needs to be made variable
-* {
+.sans {
   font-family: sans-serif;
+}
+
+.serif {
+  font-family: serif;
+}
+
+.mono {
+  font-family: monospace;
 }
 
 .width {
@@ -100,6 +108,45 @@ hr {
 .header {
   min-height: 32px;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  position: relative;
+
+  &__list {
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 1rem;
+    top: 30px;
+    background-color: white;
+    min-height: 152px;
+    min-width: 183px;
+    list-style: none;
+    border-radius: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  &__font {
+    font-weight: bold;
+    margin-right: 1.125rem;
+  }
+
+  &__toggle {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin-right: 26px;
+  }
+
+  &__line {
+    width: 1px;
+    background-color: v.$lightGray;
+  }
 }
 
 // Word

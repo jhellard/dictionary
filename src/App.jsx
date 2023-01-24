@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -8,10 +8,15 @@ import ErrorPage from "./components/ErrorPage";
 
 import Logo from "./assets/images/logo.svg";
 import Search from "./assets/images/icon-search.svg";
+import Arrow from "./assets/images/icon-arrow-down.svg";
 
 const App = () => {
   const queryClient = useQueryClient();
   const userWord = useRef("keyboard");
+  const [userFont, setUserFont] = useState({
+    name: "Sans Serif",
+    class: "sans",
+  });
 
   const { isLoading, isSuccess, isError, error, data } = useQuery({
     queryKey: ["word"],
@@ -32,12 +37,67 @@ const App = () => {
     queryClient.invalidateQueries(["word"]);
   };
 
+  const handleModal = () => {
+    const modal = document.querySelector(".nav__list");
+
+    console.log(modal.style.display);
+
+    if (modal.style.display === "none") {
+      modal.style.display = "block";
+    } else {
+      modal.style.display = "none";
+    }
+  };
+
   if (isLoading) return <Loading />;
 
   return (
-    <main className="width main">
+    <main className={`width main ${userFont.class}`}>
       <header className="header">
         <img src={Logo} alt="Dictionary Logo" />
+        <nav className="nav">
+          <span className="nav__font">{userFont.name}</span>
+          <button className="nav__toggle" onClick={() => handleModal()}>
+            <img src={Arrow} alt="Font dropdown arrow" />
+          </button>
+          <div className="nav__line"></div>
+
+          <ul className="nav__list">
+            <li
+              className="nav__item"
+              onClick={() =>
+                setUserFont({
+                  name: "Sans Serif",
+                  class: "sans",
+                })
+              }
+            >
+              Sans Serif
+            </li>
+            <li
+              className="nav__item"
+              onClick={() =>
+                setUserFont({
+                  name: "Serif",
+                  class: "serif",
+                })
+              }
+            >
+              Serif
+            </li>
+            <li
+              className="nav__item"
+              onClick={() =>
+                setUserFont({
+                  name: "Mono",
+                  class: "mono",
+                })
+              }
+            >
+              Mono
+            </li>
+          </ul>
+        </nav>
       </header>
       <form onSubmit={(e) => handleInput(e)} className="search">
         <input
