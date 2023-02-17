@@ -1,11 +1,9 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-
 import Word from "./components/Word";
 import Loading from "./components/Loading";
 import ErrorPage from "./components/ErrorPage";
-
 import Logo from "./assets/images/logo.svg";
 import Search from "./assets/images/icon-search.svg";
 import Arrow from "./assets/images/icon-arrow-down.svg";
@@ -18,9 +16,9 @@ const App = () => {
     class: "sans",
   });
 
-  const { isLoading, isSuccess, isError, error, data } = useQuery({
-    queryKey: ["word"],
-    queryFn: () =>
+  const { isLoading, isSuccess, isError, error, data } = useQuery(
+    ["word"],
+    () =>
       axios
         .get(
           `https://api.dictionaryapi.dev/api/v2/entries/en/${
@@ -29,8 +27,8 @@ const App = () => {
               : userWord.current.value
           }`
         )
-        .then((res) => res.data),
-  });
+        .then((res) => res.data)
+  );
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -40,9 +38,17 @@ const App = () => {
   const handleModal = () => {
     const modal = document.querySelector(".nav__list");
 
-    modal.style.display === "none"
-      ? (modal.style.display = "block")
-      : (modal.style.display = "none");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+  };
+
+  const handleFontSelect = (fontName, fontClass) => {
+    const modal = document.querySelector(".nav__list");
+
+    modal.style.display = "none";
+    setUserFont({
+      name: fontName,
+      class: fontClass,
+    });
   };
 
   if (isLoading) return <Loading />;
@@ -53,42 +59,27 @@ const App = () => {
         <img src={Logo} alt="Dictionary Logo" />
         <nav className="nav">
           <span className="nav__font">{userFont.name}</span>
-          <button className="nav__toggle" onClick={() => handleModal()}>
+          <button className="nav__toggle" onClick={handleModal}>
             <img src={Arrow} alt="Font dropdown arrow" />
           </button>
           <div className="nav__line"></div>
 
           <ul className="nav__list">
             <li
-              className="nav__item"
-              onClick={() =>
-                setUserFont({
-                  name: "Sans Serif",
-                  class: "sans",
-                })
-              }
+              className="nav__item sans"
+              onClick={() => handleFontSelect("Sans Serif", "sans")}
             >
               Sans Serif
             </li>
             <li
-              className="nav__item"
-              onClick={() =>
-                setUserFont({
-                  name: "Serif",
-                  class: "serif",
-                })
-              }
+              className="nav__item serif"
+              onClick={() => handleFontSelect("Serif", "serif")}
             >
               Serif
             </li>
             <li
-              className="nav__item"
-              onClick={() =>
-                setUserFont({
-                  name: "Mono",
-                  class: "mono",
-                })
-              }
+              className="nav__item mono"
+              onClick={() => handleFontSelect("Mono", "mono")}
             >
               Mono
             </li>

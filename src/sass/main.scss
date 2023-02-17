@@ -118,17 +118,31 @@ hr {
   position: relative;
 
   &__list {
-    display: block;
+    display: none;
     position: absolute;
     margin: 0;
-    padding: 1rem;
+    padding: 1.5rem;
+    width: 183px;
+    right: 20px;
     top: 30px;
     background-color: white;
-    min-height: 152px;
-    min-width: 183px;
     list-style: none;
     border-radius: 1rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
+  }
+
+  &__item {
+    margin-bottom: 1rem;
+    font-weight: bold;
+
+    &:hover {
+      color: v.$purple;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   &__font {
@@ -141,6 +155,7 @@ hr {
     background: transparent;
     padding: 0;
     margin-right: 26px;
+    cursor: pointer;
   }
 
   &__line {
