@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import NewWindow from "../assets/images/icon-new-window.svg";
 import Play from "../assets/images/icon-play.svg";
 
 const Word = ({ data }) => {
-  let pronunciation;
-  let buttonDisabled = false;
-  data.phonetics.map((phonetic) => {
-    phonetic.audio
-      ? ((pronunciation = new Audio(phonetic.audio)), (buttonDisabled = false))
-      : (buttonDisabled = true);
-  });
+  const [pronunciation, setPronunciation] = useState(null);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  console.log(data);
+  useEffect(() => {
+    const phoneticWithAudio = data.phonetics.find(({ audio }) => audio);
+    setPronunciation(
+      phoneticWithAudio ? new Audio(phoneticWithAudio.audio) : null
+    );
+    setButtonDisabled(!phoneticWithAudio);
+  }, [data]);
+
   return (
     <section className="word">
       <div className="word__wrapper">

@@ -40,13 +40,9 @@ const App = () => {
   const handleModal = () => {
     const modal = document.querySelector(".nav__list");
 
-    console.log(modal.style.display);
-
-    if (modal.style.display === "none") {
-      modal.style.display = "block";
-    } else {
-      modal.style.display = "none";
-    }
+    modal.style.display === "none"
+      ? (modal.style.display = "block")
+      : (modal.style.display = "none");
   };
 
   if (isLoading) return <Loading />;
