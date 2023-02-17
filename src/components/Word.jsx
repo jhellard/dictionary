@@ -36,9 +36,10 @@ const Word = ({ data }) => {
 
           <h3 className="word__meaning">Meaning</h3>
           <ul className="word__list">
-            {definitions.map((definition, key) => (
+            {definitions.map(({ definition, example }, key) => (
               <li className="word__definition" key={key}>
-                <span>{definition.definition}</span>
+                <span>{definition}</span>
+                {example && <p className="word__example">"{example}"</p>}
               </li>
             ))}
           </ul>
