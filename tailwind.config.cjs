@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -9,9 +10,11 @@ module.exports = {
         darkGray: "#757575",
         purple: "#a445ed",
         lightBlack: "#2d2d2d",
+        darkerBlack: "#1F1F1F",
+        veryBlack: "#050505",
       },
       width: {
-        contained: "min(100% - 3rem, 737px)",
+        contained: "min(100%, 737px)",
       },
       animation: {
         boing: "boing 2s infinite",

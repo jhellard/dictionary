@@ -47,12 +47,18 @@ const App = () => {
     });
   };
 
+  const handleThemeToggle = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   if (isLoading) return <Loading />;
 
   return (
-    <main className={`w-contained pt-6 mx-auto ${userFont.class}`}>
-      <header className="min-h-[32px] mb-6 flex justify-between items-center">
-        <img src={Logo} alt="Dictionary Logo" />
+    <main
+      className={`w-contained pt-6 mx-auto ${userFont.class} px-6 dark:bg-veryBlack transition-all duration-75`}
+    >
+      <header className="min-h-[32px] mb-6 flex items-center dark:text-white">
+        <img className="mr-auto" src={Logo} alt="Dictionary Logo" />
         <nav className="flex relative">
           <span className="font-bold mr-[18px]">{userFont.name}</span>
           <button
@@ -61,9 +67,9 @@ const App = () => {
           >
             <img src={Arrow} alt="Font dropdown arrow" />
           </button>
-          <div className="w-[1px] bg-lightGray"></div>
+          <div className="w-[1px] bg-lightGray mr-[26px]"></div>
           <ul
-            className="hidden absolute m-0 p-6 w-[183px] right-5 top-[30px] bg-white list-none rounded-2xl cursor-pointer shadow-xl"
+            className="hidden absolute m-0 p-6 w-[183px] right-5 top-[30px] bg-white list-none rounded-2xl cursor-pointer shadow-2xl dark:bg-darkerBlack dark:shadow-purple"
             id="nav_list"
           >
             <li
@@ -86,14 +92,31 @@ const App = () => {
             </li>
           </ul>
         </nav>
+        <svg
+          className="text-darkGray dark:text-purple"
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewBox="0 0 22 22"
+          onClick={() => handleThemeToggle()}
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            d="M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z"
+          />
+        </svg>
       </header>
       <form
         onSubmit={(e) => handleInput(e)}
-        className="flex justify-between rounded-2xl bg-input mb-6"
+        className="flex justify-between rounded-2xl bg-input mb-6 dark:bg-darkerBlack dark:text-white"
       >
         <input
           required
-          className="pl-6 min-h-[48px] w-full border-none bg-transparent font-bold focus:outline-none"
+          className="pl-6 min-h-[48px] w-full border-purple bg-transparent font-bold focus:outline-none placeholder:opacity-25 dark:placeholder:text-white"
           type="text"
           ref={userWord}
           placeholder="Search for any word..."
