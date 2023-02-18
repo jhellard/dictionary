@@ -12,6 +12,7 @@ module.exports = {
         lightBlack: "#2d2d2d",
         darkerBlack: "#1F1F1F",
         veryBlack: "#050505",
+        lineGray: "#3a3a3a",
       },
       width: {
         contained: "min(100%, 737px)",

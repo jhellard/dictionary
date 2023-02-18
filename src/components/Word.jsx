@@ -15,9 +15,9 @@ const Word = ({ data }) => {
 
   return (
     <section>
-      <div className="flex justify-between mb-2">
+      <div className="flex justify-between mb-8">
         <div>
-          <h1 className="text-[2rem] font-bold">{data.word}</h1>
+          <h1 className="text-[2rem] font-bold dark:text-white">{data.word}</h1>
           {data.phonetic && (
             <span className="inline-block text-purple text-lg">
               {data.phonetic}
@@ -36,15 +36,19 @@ const Word = ({ data }) => {
       {data.meanings.map(({ partOfSpeech, definitions, synonyms }, key) => (
         <section key={key}>
           <div className="flex items-center mb-8">
-            <h2 className="mr-4 italic text-lg">{partOfSpeech}</h2>
-            <hr className="w-contained h-[1px] border-none bg-lightGray" />
+            <h2 className="mr-4 italic text-lg dark:text-white">
+              {partOfSpeech}
+            </h2>
+            <hr className="w-contained h-[1px] border-none bg-lightGray dark:bg-darkGray" />
           </div>
 
           <h3 className="text-darkGray font-normal text-base">Meaning</h3>
           <ul className="p-0 pl-4 list-disc my-4">
             {definitions.map(({ definition, example }, key) => (
               <li className="text-purple pl-1 pb-3 text-[15px]" key={key}>
-                <span className="text-lightBlack">{definition}</span>
+                <span className="text-lightBlack dark:text-white">
+                  {definition}
+                </span>
                 {example && <p className="mt-3 text-darkGray">"{example}"</p>}
               </li>
             ))}
@@ -64,10 +68,13 @@ const Word = ({ data }) => {
           )}
         </section>
       ))}
-      <hr className="mb-6 w-contained h-[1px] border-none bg-lightGray" />
-      <div className="mb-[85px]">
+      <hr className="mb-6 w-contained h-[1px] border-none bg-lightGray dark:bg-lineGray" />
+      <div className="pb-8">
         <h4 className="underline text-darkGray text-sm font-normal">Source</h4>
-        <a className="text-lightBlack" href={data.sourceUrls[0]}>
+        <a
+          className="text-lightBlack dark:text-white"
+          href={data.sourceUrls[0]}
+        >
           {data.sourceUrls[0]}
           <img
             className="ml-2 inline-block"

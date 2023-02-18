@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     <main
-      className={`w-contained pt-6 mx-auto ${userFont.class} px-6 dark:bg-veryBlack transition-all duration-75`}
+      className={`w-contained pt-6 mx-auto ${userFont.class} px-6 dark:bg-veryBlack transition-all duration-75 min-h-screen`}
     >
       <header className="min-h-[32px] mb-6 flex items-center dark:text-white">
         <img className="mr-auto" src={Logo} alt="Dictionary Logo" />
@@ -69,7 +69,7 @@ const App = () => {
           </button>
           <div className="w-[1px] bg-lightGray mr-[26px]"></div>
           <ul
-            className="hidden absolute m-0 p-6 w-[183px] right-5 top-[30px] bg-white list-none rounded-2xl cursor-pointer shadow-2xl dark:bg-darkerBlack dark:shadow-purple"
+            className="hidden absolute m-0 p-6 w-[183px] right-5 top-[30px] bg-white list-none rounded-2xl cursor-pointer shadow-2xl dark:bg-darkerBlack dark:shadow-purple z-10"
             id="nav_list"
           >
             <li
@@ -116,7 +116,7 @@ const App = () => {
       >
         <input
           required
-          className="pl-6 min-h-[48px] w-full border-purple bg-transparent font-bold focus:outline-none placeholder:opacity-25 dark:placeholder:text-white"
+          className="pl-6 min-h-[48px] w-full border-purple bg-transparent font-bold focus:outline-none placeholder:opacity-50 dark:placeholder:opacity-25 dark:placeholder:text-white"
           type="text"
           ref={userWord}
           placeholder="Search for any word..."
