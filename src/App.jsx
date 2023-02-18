@@ -36,15 +36,11 @@ const App = () => {
   };
 
   const handleModal = () => {
-    const modal = document.querySelector(".nav__list");
-
-    modal.style.display = modal.style.display === "block" ? "none" : "block";
+    document.querySelector("#nav_list").classList.toggle("hidden");
   };
 
   const handleFontSelect = (fontName, fontClass) => {
-    const modal = document.querySelector(".nav__list");
-
-    modal.style.display = "none";
+    document.querySelector("#nav_list").classList.toggle("hidden");
     setUserFont({
       name: fontName,
       class: fontClass,
@@ -66,22 +62,24 @@ const App = () => {
             <img src={Arrow} alt="Font dropdown arrow" />
           </button>
           <div className="w-[1px] bg-lightGray"></div>
-          {/* TODO: FIX HOVER COLOR FOR LIST ITEMS*/}
-          <ul className="hidden absolute m-0 p-6 w-[183px] right-5 top-[30px] bg-white list-none rounded-2xl cursor-pointer shadow-xl">
+          <ul
+            className="hidden absolute m-0 p-6 w-[183px] right-5 top-[30px] bg-white list-none rounded-2xl cursor-pointer shadow-xl"
+            id="nav_list"
+          >
             <li
-              className="mb-4 font-bold sans"
+              className="mb-4 font-bold sans hover:text-purple"
               onClick={() => handleFontSelect("Sans Serif", "sans")}
             >
               Sans Serif
             </li>
             <li
-              className="mb-4 font-bold serif"
+              className="mb-4 font-bold serif hover:text-purple"
               onClick={() => handleFontSelect("Serif", "serif")}
             >
               Serif
             </li>
             <li
-              className="font-bold mono"
+              className="font-bold mono hover:text-purple"
               onClick={() => handleFontSelect("Mono", "mono")}
             >
               Mono

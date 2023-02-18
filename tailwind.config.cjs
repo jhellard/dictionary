@@ -13,6 +13,18 @@ module.exports = {
       width: {
         contained: "min(100% - 3rem, 737px)",
       },
+      animation: {
+        boing: "boing 2s infinite",
+      },
+      keyframes: {
+        boing: {
+          "0%, 25%, 50%, 75%, 100%": {
+            transform: "translateY(0)",
+          },
+          "40%": { transform: "translateY(-20px)" },
+          "60%": { transform: "translateY(-12px)" },
+        },
+      },
     },
   },
   plugins: [],
