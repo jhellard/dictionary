@@ -49,18 +49,19 @@ const App = () => {
 
   const handleThemeToggle = () => {
     document.documentElement.classList.toggle("dark");
+    document.querySelector("#root").classList.toggle("bg-veryBlack");
   };
 
   if (isLoading) return <Loading />;
 
   return (
-    <main
-      className={`w-contained pt-6 mx-auto ${userFont.class} px-6 dark:bg-veryBlack transition-all duration-75 min-h-screen`}
-    >
-      <header className="min-h-[32px] mb-6 flex items-center dark:text-white">
+    <>
+      <header className="w-contained mx-auto px-6 pt-6 sm:pt-[58px] min-h-[32px] pb-6 sm:pb-[52px] flex items-center dark:text-white dark:bg-veryBlack">
         <img className="mr-auto" src={Logo} alt="Dictionary Logo" />
         <nav className="flex relative">
-          <span className="font-bold mr-[18px]">{userFont.name}</span>
+          <span className="font-bold mr-[18px] text-sm sm:text-lg">
+            {userFont.name}
+          </span>
           <button
             className="border-none bg-transparent p-0 mr-[26px] cursor-pointer"
             onClick={handleModal}
@@ -110,24 +111,28 @@ const App = () => {
           />
         </svg>
       </header>
-      <form
-        onSubmit={(e) => handleInput(e)}
-        className="flex justify-between rounded-2xl bg-input mb-6 dark:bg-darkerBlack dark:text-white"
+      <main
+        className={`w-contained mx-auto ${userFont.class} px-6 dark:bg-veryBlack min-h-screen`}
       >
-        <input
-          required
-          className="pl-6 min-h-[48px] w-full border-purple bg-transparent font-bold focus:outline-none placeholder:opacity-50 dark:placeholder:opacity-25 dark:placeholder:text-white"
-          type="text"
-          ref={userWord}
-          placeholder="Search for any word..."
-        />
-        <button className="border-none bg-transparent pr-6">
-          <img src={Search} alt="Search Button" />
-        </button>
-      </form>
-      {isError && <ErrorPage error={error.response.data} />}
-      {isSuccess && <Word data={data[0]} />}
-    </main>
+        <form
+          onSubmit={(e) => handleInput(e)}
+          className="flex justify-between rounded-2xl bg-input mb-6 sm:mb-[50px] dark:bg-darkerBlack dark:text-white"
+        >
+          <input
+            required
+            className="pl-6 min-h-[48px] sm:min-h-[64px] sm:text-xl w-full border-purple bg-transparent font-bold focus:outline-none placeholder:opacity-50 dark:placeholder:opacity-25 dark:placeholder:text-white"
+            type="text"
+            ref={userWord}
+            placeholder="Search for any word..."
+          />
+          <button className="border-none bg-transparent pr-6">
+            <img src={Search} alt="Search Button" />
+          </button>
+        </form>
+        {isError && <ErrorPage error={error.response.data} />}
+        {isSuccess && <Word data={data[0]} />}
+      </main>
+    </>
   );
 };
 
