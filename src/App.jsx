@@ -36,15 +36,11 @@ const App = () => {
   };
 
   const handleModal = () => {
-    const modal = document.querySelector(".nav__list");
-
-    modal.style.display = modal.style.display === "block" ? "none" : "block";
+    document.querySelector("#nav_list").classList.toggle("hidden");
   };
 
   const handleFontSelect = (fontName, fontClass) => {
-    const modal = document.querySelector(".nav__list");
-
-    modal.style.display = "none";
+    document.querySelector("#nav_list").classList.toggle("hidden");
     setUserFont({
       name: fontName,
       class: fontClass,
@@ -54,31 +50,36 @@ const App = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <main className={`width main ${userFont.class}`}>
-      <header className="header">
+    <main className={`w-contained pt-6 mx-auto ${userFont.class}`}>
+      <header className="min-h-[32px] mb-6 flex justify-between items-center">
         <img src={Logo} alt="Dictionary Logo" />
-        <nav className="nav">
-          <span className="nav__font">{userFont.name}</span>
-          <button className="nav__toggle" onClick={handleModal}>
+        <nav className="flex relative">
+          <span className="font-bold mr-[18px]">{userFont.name}</span>
+          <button
+            className="border-none bg-transparent p-0 mr-[26px] cursor-pointer"
+            onClick={handleModal}
+          >
             <img src={Arrow} alt="Font dropdown arrow" />
           </button>
-          <div className="nav__line"></div>
-
-          <ul className="nav__list">
+          <div className="w-[1px] bg-lightGray"></div>
+          <ul
+            className="hidden absolute m-0 p-6 w-[183px] right-5 top-[30px] bg-white list-none rounded-2xl cursor-pointer shadow-xl"
+            id="nav_list"
+          >
             <li
-              className="nav__item sans"
+              className="mb-4 font-bold sans hover:text-purple"
               onClick={() => handleFontSelect("Sans Serif", "sans")}
             >
               Sans Serif
             </li>
             <li
-              className="nav__item serif"
+              className="mb-4 font-bold serif hover:text-purple"
               onClick={() => handleFontSelect("Serif", "serif")}
             >
               Serif
             </li>
             <li
-              className="nav__item mono"
+              className="font-bold mono hover:text-purple"
               onClick={() => handleFontSelect("Mono", "mono")}
             >
               Mono
@@ -86,15 +87,18 @@ const App = () => {
           </ul>
         </nav>
       </header>
-      <form onSubmit={(e) => handleInput(e)} className="search">
+      <form
+        onSubmit={(e) => handleInput(e)}
+        className="flex justify-between rounded-2xl bg-input mb-6"
+      >
         <input
           required
-          className="search__input"
+          className="pl-6 min-h-[48px] w-full border-none bg-transparent font-bold focus:outline-none"
           type="text"
           ref={userWord}
           placeholder="Search for any word..."
         />
-        <button className="search__button">
+        <button className="border-none bg-transparent pr-6">
           <img src={Search} alt="Search Button" />
         </button>
       </form>

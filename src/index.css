@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sans {
+  font-family: sans-serif;
+}
+
+.serif {
+  font-family: serif;
+}
+
+.mono {
+  font-family: monospace;
+}
