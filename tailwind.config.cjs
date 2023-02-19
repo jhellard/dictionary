@@ -15,7 +15,7 @@ module.exports = {
         lineGray: "#3a3a3a",
       },
       width: {
-        contained: "min(100%, 737px)",
+        contained: "min(100%, 785px)",
       },
       animation: {
         boing: "boing 2s infinite",

@@ -48,8 +48,10 @@ const App = () => {
   };
 
   const handleThemeToggle = () => {
+    const root = document.querySelector("#root");
     document.documentElement.classList.toggle("dark");
-    document.querySelector("#root").classList.toggle("bg-veryBlack");
+    root.classList.toggle("bg-veryBlack");
+    root.classList.toggle("min-h-screen");
   };
 
   if (isLoading) return <Loading />;
@@ -93,13 +95,22 @@ const App = () => {
             </li>
           </ul>
         </nav>
+        <div className="grid place-items-center relative w-[40px] mr-5">
+          <label className="absolute w-full h-[20px] rounded-[50px] cursor-pointer">
+            <input
+              className="absolute hidden"
+              type="checkbox"
+              onClick={() => handleThemeToggle()}
+            />
+            <span className="absolute w-full h-full rounded-[50px] duration-300 slider"></span>
+          </label>
+        </div>
         <svg
           className="text-darkGray dark:text-purple"
           xmlns="http://www.w3.org/2000/svg"
           width="22"
           height="22"
           viewBox="0 0 22 22"
-          onClick={() => handleThemeToggle()}
         >
           <path
             fill="none"
@@ -112,7 +123,7 @@ const App = () => {
         </svg>
       </header>
       <main
-        className={`w-contained mx-auto ${userFont.class} px-6 dark:bg-veryBlack min-h-screen`}
+        className={`w-contained mx-auto ${userFont.class} px-6 dark:bg-veryBlack`}
       >
         <form
           onSubmit={(e) => handleInput(e)}
