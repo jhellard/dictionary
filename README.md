@@ -38,7 +38,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Frontend Mentor](https://your-solution-url.com)
+- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/dictionary-web-app-react-querytailwind-stB_3eqil3)
 - Live Site URL: [Vercel](https://dictionary-jhellard.vercel.app/)
 
 ## My process
@@ -47,7 +47,6 @@ Users should be able to:
 
 - Tailwind CSS
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Tailwind CSS](https://tailwindcss.com/) - For styles
